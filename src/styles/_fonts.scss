@@ -1,0 +1,80 @@
+////
+//// Fonts
+////
+
+/// Creates the font styling for the meme-style font we're using
+/// @param {length} $stroke [2px] - width of the stroke
+/// @param {color} $fill-color [white] - color fo the text fill
+/// @param {color} $stroke-color [black] - color of the text stroke
+@mixin button($stroke: 2px, $fill-color: white, $stroke-color: black) {
+  @include stroke-text($stroke, $fill-color, $stroke-color);
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/// Styling of our big, full page text
+/// @param {size} $font-size [80px] - font size
+/// @param {length} $stroke [3px] - stroke width
+@mixin big-text($font-size: 80px, $stroke: 3px) {
+  @include stroke-text($stroke);
+  font-size: $font-size;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+/// Styling of our loading text states. Takes a container within a grid area and
+/// centers it. Adds in some animated ellipsis.
+@mixin loading-text($font-size: 80px) {
+  @include big-text($font-size);
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  margin-top: -40px;
+  width: 100%;
+  &:after {
+    position: absolute;
+    content: "";
+    animation: loading 1s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      content: "";
+    }
+    25% {
+      content: ".";
+    }
+    50% {
+      content: "..";
+    }
+    75% {
+      content: "...";
+    }
+  }
+}
+
+/// Makes meme text
+/// @param {length} $stroke [2px] - width of the stroke
+/// @param {color} $fill-color [white] - fill color of the text
+/// @param {color} $stroke-color [black] - color of the stroke
+@mixin stroke-text($stroke: 2px, $fill-color: white, $stroke-color: black) {
+  @supports (
+      (-webkit-text-stroke-color: $stroke-color) and
+        (-webkit-text-fill-color: $fill-color)
+    )
+    or
+    (
+      (-moz-text-stroke-color: $stroke-color) and
+        (-moz-text-fill-color: $fill-color)
+    ) {
+    -moz-text-fill-color: $fill-color;
+    -webkit-text-fill-color: $fill-color;
+    -moz-text-stroke-color: $stroke-color;
+    -webkit-text-stroke-color: $stroke-color;
+    -moz-text-stroke-width: $stroke;
+    -webkit-text-stroke-width: $stroke;
+  }
+}

@@ -1,0 +1,20 @@
+////
+//// Media queries
+////
+
+$max-mobile-width: 767px;
+$min-desktop-width: $max-mobile-width + 1;
+
+/// Mobile break point.
+@mixin mobile() {
+  @media screen and (max-width: $max-mobile-width) {
+    @content;
+  }
+}
+
+/// Desktop break point.
+@mixin desktop() {
+  @media screen and (min-width: $min-desktop-width) {
+    @content;
+  }
+}

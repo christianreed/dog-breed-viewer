@@ -1,0 +1,36 @@
+////
+//// Home page styling
+////
+
+@import "../styles/_base";
+@import "./Home.mobile.scss";
+
+@include desktop {
+  .loading {
+    @include loading-text;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .listItem {
+    display: inline-block;
+  }
+
+  .link {
+    @include button(1.5px);
+    display: block;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 5px;
+    &:hover {
+      color: red;
+      @include stroke-text(1.5px, red);
+    }
+  }
+}

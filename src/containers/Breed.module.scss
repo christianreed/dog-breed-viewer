@@ -1,0 +1,72 @@
+////
+//// Individual breed page styling
+////
+
+@import "../styles/_base";
+@import "./Breed.mobile";
+
+@include desktop {
+  .breed {
+    display: grid;
+    grid-template-rows: auto 100px;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      "image image"
+      "home next";
+    min-height: 100vh;
+  }
+
+  .loading,
+  .picture {
+    grid-area: image;
+    position: relative;
+  }
+
+  .loadingText {
+    @include loading-text;
+  }
+
+  .picture {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    &.contain {
+      background-size: contain;
+    }
+  }
+
+  .breedName {
+    @include big-text;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .home,
+  .next {
+    font-size: 40px;
+    padding: 10px;
+    &:hover {
+      background: green;
+    }
+  }
+
+  .home {
+    @include button;
+    display: table;
+    height: 100%;
+    background-color: red;
+  }
+
+  .homeCentering {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .next {
+    @include button;
+    grid-area: next;
+    background: blue;
+  }
+}

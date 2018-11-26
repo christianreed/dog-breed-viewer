@@ -1,0 +1,33 @@
+////
+//// Home page mobile styling
+////
+
+@include mobile {
+  .loading {
+    @include loading-text(50px);
+    margin-top: -50px;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+
+  .listItem {
+    display: inline-block;
+  }
+
+  .link {
+    @include button(1.5px);
+    display: block;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 5px;
+    &:hover {
+      color: red;
+      @include stroke-text(1.5px, red);
+    }
+  }
+}
